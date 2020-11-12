@@ -5,10 +5,10 @@
  include 'koneksi.php';
  $idp = $_GET['idp'];
 
- mysqli_query($koneksi, "UPDATE tb_pemesanan a, tb_pembayaran b SET a.status_pemesanan = 3, b.status_pembayaran = 2 WHERE a.id_pemesanan = '$idp' AND b.id_pemesanan = '$idp'; ");
+ mysqli_query($koneksi, "UPDATE tb_pemesanan a, tb_pembayaran b SET a.status_pemesanan = 2, b.status_pembayaran = 2 WHERE a.id_pemesanan = '$idp' AND b.id_pemesanan = '$idp'; ");
 
  mysqli_query($koneksi, "INSERT INTO tb_riwayat_status (id, status_code, status, waktu)
- VALUES ('','$idp', 3, now())");
+ VALUES ('','$idp', 2, now())");
 
 
 ?>
@@ -87,7 +87,7 @@
                 <form action="#" method="post">
                   <div class="form-group">
                   <div class="form-group">
-                    <button type="submit" name="submit" class="primary-btn btn-block mb-4"><i class="fa fa-spinner"></i>&nbsp;Pesanan anda sedang kami proses packing ! </button>
+                    <a href="datatransaksi.php" class="primary-btn btn-block mb-4"><i class="fa fa-spinner"></i>&nbsp;Pesanan anda sedang kami proses packing ! </a>
                     <center><b><a href="index.php">Kembali belanja !</a> </a></b></center>
                   </div>
                 </form>

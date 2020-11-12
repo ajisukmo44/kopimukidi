@@ -61,10 +61,10 @@ $tanggalawal1     = date('d/m/Y', strtotime($_POST['tanggal']));
             <tr>
                 <td style="text-align: center; background-color:#f5f5f5">No</td>
                 <td style="text-align: center; background-color:#f5f5f5">ID Pemesanan</td>
-                <td style="text-align: center; background-color:#f5f5f5">Nama Rekening</td>
-                <td style="text-align: center; background-color:#f5f5f5">Bank</td>
-                <td style="text-align: center; background-color:#f5f5f5">Tanggal Transfer</td>
-                <td style="text-align: center; background-color:#f5f5f5">Total Transfer</td>
+                <td style="text-align: center; background-color:#f5f5f5">Metode</td>
+                <td style="text-align: center; background-color:#f5f5f5">Nama Pengirim</td>
+                <td style="text-align: center; background-color:#f5f5f5">Tanggal</td>
+                <td style="text-align: center; background-color:#f5f5f5">Total Pembayaran</td>
             </tr>
 
         </thead>
@@ -73,14 +73,14 @@ $tanggalawal1     = date('d/m/Y', strtotime($_POST['tanggal']));
             <?php
             $tanggalakhir  = date('Y-m-d', strtotime($_POST['tanggal1']));
             $tanggalawal   = date('Y-m-d', strtotime($_POST['tanggal']));
-            $sql = "SELECT * FROM tb_pembayaran  WHERE  status_pembayaran = 2 ORDER BY id_pembayaran ASC;";
+            $sql = "SELECT * FROM tb_pembayaran  WHERE status_pembayaran = 2 ORDER BY id_pembayaran ASC;";
 
             $result = mysqli_query($conn, $sql);
             $no = 1;
             if (mysqli_num_rows($result) > 0) {
                 while ($data = mysqli_fetch_array($result)) {
-                    $tt = number_format($data['jumlah_transfer'], 0, ',', '.');
-                    $tanggal = date('d-m-Y', strtotime($data['tanggal_transfer']));
+                    $tt = number_format($data['total_pembayaran'], 0, ',', '.');
+                    $tanggal = date('d-m-Y', strtotime($data['tanggal_pembayaran']));
 
                     echo "<tr>
                     
@@ -91,10 +91,10 @@ $tanggalawal1     = date('d/m/Y', strtotime($_POST['tanggal']));
                   <td style='text-align: center'>" . $data['id_pemesanan'] . "</td>
                   
                 <col width='150'>
-                  <td style='text-align: center'>" . $data['nama_rekening'] . "</td>
+                  <td style='text-align: center'>" . $data['metode_pembayaran'] . "</td>
                   
                 <col width='120'>
-                  <td style='text-align: center'>" . $data['nama_bank'] . "</td>
+                  <td style='text-align: center'>" . $data['nama_pengirim'] . "</td>
                   
                 <col width='100'>
                   <td style='text-align: center'>$tanggal</td>

@@ -117,7 +117,7 @@ while ($i = mysqli_fetch_array($invoice)) {
                                         } elseif ($i['status_pemesanan'] == 1) {
                                             echo "<a href='#' ><span class='badge badge-danger'>Belum Dibayar</span></a>";
                                         } elseif ($i['status_pemesanan'] == 2) {
-                                            echo "<a href='#' ><span class='badge badge-warning'>Sedang Diproses</span></a>";
+                                            echo "<a href='#' ><span class='badge badge-success'>Pembayaran Berhasil</span></a>";
                                         } elseif ($i['status_pemesanan'] == 3) {
                                             echo "<a href='#' ><span class='badge badge-info'>Sedang Dipacking</span></a>";
                                         } elseif ($i['status_pemesanan'] == 4) {

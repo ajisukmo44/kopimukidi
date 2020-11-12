@@ -125,7 +125,7 @@ while ($i = mysqli_fetch_array($invoice)) {
         } elseif ($i['status_pemesanan'] == 1) {
             echo "<a href='#' ><span class='label label-danger'>Menunggu Pembayaran</span></a>";
         } elseif ($i['status_pemesanan'] == 2) {
-            echo "<a href='#' ><span class='label label-warning'>Sedang Diproses</span></a>";
+            echo "<a href='#' ><span class='label label-success'>Pembayaran Success</span></a>";
         } elseif ($i['status_pemesanan'] == 3) {
             echo "<a href='#' ><span class='label label-primary'>Sedang Dipacking</span></a>";
         } elseif ($i['status_pemesanan'] == 4) {
@@ -142,13 +142,19 @@ while ($i = mysqli_fetch_array($invoice)) {
     <br>
     <div class="mt-4 mb-4">
         <hr>
-        <b>PEMBAYARAN DI TUJUKAN KEPADA :</b>
-        <p><img src="gambar/bca1.png" alt="" style="width:100px;  margin-top:4px; margin-bottom:4px"> </p>
-        <p>1550276344 - an: mukidi </p>
-        <hr>
-  <b>PEMBAYARAN LEWAT PAYMENT GATEWAY :</b>
+        <p> <b>Lakukan Pembayaran Sebelum Pukul :<span class="text-danger"> <?php
+                            date_default_timezone_set("Asia/Jakarta");
+                            
+                            $date = date("G:i, d-m-Y");
+                            $tomorrow = date('G:i, d-m-Y',strtotime($date . "+1 days"));
+
+                            echo $tomorrow;
+
+                            ?></span></b></p>
+                            <hr>
+                          <b>Silahkan Pilih Pembayaran Dibawah ini :</b>
                           <br>
-                          <p><img src="gambar/payment.jpg" alt="" style="width:190px;  margin-top:4px; margin-bottom:4px"> </p>
+                          <p><img src="gambar/pgwy.png" alt="" style="width:250px;  margin-top:4px; margin-bottom:4px"> </p>
                             
     </div>
     <br><br>

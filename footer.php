@@ -1,7 +1,7 @@
   <footer class="site-footer bg-light" style="border:1px;" id="footer-section">
   	<div class="container">
   		<div class="row">
-  			<div class="col-md-5 mr-5">
+  			<div class="col-md-4 mr-5">
   				<h2 class="footer-heading mb-3 ">Tentang Kami</h2>
   				<p style="text-align: justify;">Kopi Mukidi merupakan salah satu merk produk kopi lokal yang cukup dikenal di Indonesia. Kopi Mukidi lahir dari gagasan konsep kemandirian petani di lereng gunung sumbing. </p>
   				<p style="text-align: justify;">
@@ -15,10 +15,9 @@
   				<img src="gambar/tiki.png" alt="Image" class="img-fluid rounded w-80 mb-3" style="width: 50%;">
   				<img src="gambar/pos.png" alt="Image" class="img-fluid rounded w-80 mb-3" style="width: 50%;">
   			</div>
-  			<div class=" col-md-2">
+  			<div class=" col-md-3">
   				<h2 class="footer-heading mb-4">Pembayaran </h2>
-  				<img src="gambar/bca1.png" alt="Image" class="img-fluid rounded w-95 mb-3" style="width: 50%;">
-  				<img src="gambar/payment.png" alt="Image" class="img-fluid rounded w-80 mb-3" style="width: 70%;">
+  				<img src="gambar/pgwy.png" alt="Image" class="img-fluid rounded w-95 mb-3" style="width: 100%;">
   			</div>
   			<div class="col-md-2 ml-auto">
   				<h2 class="footer-heading mb-4">Social Media</h2>

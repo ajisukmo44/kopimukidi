@@ -52,7 +52,7 @@ include 'fungsi/cek_session.php';      // session
                                                 <th>No</th>
                                                 <th>ID&nbsp;Pemesanan</th>
                                                 <th>Tgl&nbsp;Checkout</th>
-                                                <th>Detail</th>
+                                                <th>Detail&nbsp;Pemesanan</th>
                                                 <th>Nama&nbsp;Pelanggan</th>
                                                 <th>Total&nbsp;Bayar</th>
                                                 <th>status&nbsp;Pemesanan</th>
@@ -74,9 +74,9 @@ include 'fungsi/cek_session.php';      // session
                                                     <td><?= $no++ ?></td>
                                                     <td><?php echo $data['id_pemesanan']; ?></td>
                                                     <td><?= $tgl; ?></td>
-                                                    <td><a href="datapemesanandetail.php?id=<?= $id; ?>" class="btn btn-light btn-sm"><i class='fa fa-file-o'> </i> Detail</a></td>
+                                                    <td><a href="datapemesanandetail.php?id=<?= $id; ?>" class="btn btn-light btn-sm"><i class='fa fa-file-o'> </i> Lihat Detail</a></td>
                                                     <td><?php echo $data['nama_pelanggan']; ?></td>
-                                                    <td><?php echo $data['total_bayar']; ?></td>
+                                                    <td><?php echo "Rp. " . number_format($data['total_bayar']); ?></td>
 
                                                     <!-- status pemesanan -->
                                                     <td>
@@ -84,11 +84,11 @@ include 'fungsi/cek_session.php';      // session
                                                         if ($data['status_pemesanan'] == 0) {
                                                             echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-danger'>Gagal</span></a>";
                                                         } elseif ($data['status_pemesanan'] == 1) {
-                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-danger'>Menunggu Pembayaran</span></a>";
+                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-danger'>Belum Dibayar</span></a>";
                                                         } elseif ($data['status_pemesanan'] == 2) {
-                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-warning'>Sedang Diproses</span></a>";
+                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-success'>Pembayaran Berhasil</span></a>";
                                                         } elseif ($data['status_pemesanan'] == 3) {
-                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-primary'>Sedang Dikemas</span></a>";
+                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-primary'>Sedang Dipacking</span></a>";
                                                         } elseif ($data['status_pemesanan'] == 4) {
                                                             echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-info'>Sudah Dikirim</span></a>";
                                                         } elseif ($data['status_pemesanan'] == 5) {

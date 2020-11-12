@@ -165,7 +165,6 @@ $alt = $_SESSION['alamat'];
 												</tr>
 
 											<?php
-
 												$berat = 0;
 												$total = 0;
 											}

@@ -7,7 +7,7 @@
                               <i class="pe-7s-cash"></i>
                           </div>
                           <?php
-                            $sql   = "SELECT sum(total_bayar) AS total FROM tb_pemesanan WHERE status_pemesanan = 5";
+                            $sql   = "SELECT sum(total_bayar) AS total FROM tb_pemesanan WHERE status_pemesanan > 1 ";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($data = mysqli_fetch_array($result)) {
@@ -19,7 +19,7 @@
                             ?>
                           <div class="stat-content">
                               <div class="text-left dib">
-                                  <div class="stat-text">Rp. <span class="count"><?= $a; ?></span></div>
+                                  <div class="stat-text"><?php echo "Rp. " . number_format($a); ?></span></div>
                                   <div class="stat-heading">Pendapatan</div>
                               </div>
                           </div>
@@ -125,7 +125,7 @@
                                               <td><?= $id; ?></td>
                                               <td><?= $tgl; ?></td>
                                               <td><?php echo $data['nama_pelanggan']; ?></td>
-                                              <td><?php echo $data['total_bayar']; ?></td>
+                                              <td><?php echo "Rp. " . number_format($data['total_bayar']); ?></td>
                                               <td>
                                               <?php
                                                         if ($status == 0) {
@@ -133,9 +133,9 @@
                                                         } elseif ($status == 1) {
                                                             echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-danger'>Menunggu Pembayaran</span></a>";
                                                         } elseif ($status == 2) {
-                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-warning'>Sedang Diproses</span></a>";
+                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-success'>Pembayaran Success</span></a>";
                                                         } elseif ($status == 3) {
-                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-primary'>Sedang Dikemas</span></a>";
+                                                            echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-primary'>Sedang Dipacking</span></a>";
                                                         } elseif ($status == 4) {
                                                             echo "<a href='#myModal2' id='pesan' data-toggle='modal' data-id='$id' ><span class='badge badge-info'>Sudah Dikirim</span></a>";
                                                         } elseif ($status == 5) {

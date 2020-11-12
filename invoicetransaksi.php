@@ -93,14 +93,16 @@ while ($i = mysqli_fetch_array($invoice)) {
                                     </tfoot>
                                 </table>
                             </div>
+                            
                             <h5>Status :</h5>
+                            
                             <?php
                             if ($i['status_pemesanan'] == 0) {
                                 echo "<a href='#' ><span class='label label-danger'>Gagal</span></a>";
                             } elseif ($i['status_pemesanan'] == 1) {
                                 echo "<a href='#' ><span class='label label-danger'>Menunggu Pembayaran</span></a>";
                             } elseif ($i['status_pemesanan'] == 2) {
-                                echo "<a href='#' ><span class='label label-warning'>Sedang Diproses</span></a>";
+                                echo "<a href='#' ><span class='label label-success'>Pembayaran Success</span></a>";
                             } elseif ($i['status_pemesanan'] == 3) {
                                 echo "<a href='#' ><span class='label label-primary'>Sedang Dipacking</span></a>";
                             } elseif ($i['status_pemesanan'] == 4) {
@@ -109,27 +111,41 @@ while ($i = mysqli_fetch_array($invoice)) {
                                 echo "<a href='#' ><span class='label label-success'>Selesai</span></a>";
                             }
                             ?>
-                        <div class="mt-4 mb-4">
-                            <hr>
-                            <b>PEMBAYARAN DI TUJUKAN KEPADA :</b>
-                            <p><img src="gambar/bca1.png" alt="" style="width:100px;  margin-top:4px; margin-bottom:4px"> </p>
-                            <p>1550276344 - an: mukidi </p>
-                            <hr>
-                            <p>Jika sudah melakukan pembayaran melalui transfer bank silahkan kirim konfirmasi pembayaran : <a href="konfirpembayaran.php?id=<?php echo $id; ?>&tb=<?= $i['total_bayar'];?>" style="color:blue;" >Klik Di Sini</a></p>
-                          <hr>
-                          
-                          <b>PEMBAYARAN LEWAT PAYMENT GATEWAY :</b>
-                          <br>
-                          <p><img src="gambar/payment.jpg" alt="" style="width:190px;  margin-top:4px; margin-bottom:4px"> </p>
                             
-                             <p> Bayar Lewat Payment Gateaway :
+                            <div class="mt-4 mb-4">
+                            <hr>
+                            <p> <b>Lakukan Pembayaran Sebelum Pukul :<span class="text-danger"> <?php
+                            $query = "SELECT * FROM tb_pembayaran WHERE id_pemesanan= '$id' ";
+                            $result = mysqli_query($koneksi, $query);
+                            $dataku = mysqli_num_rows($result);
+                            $dataku = mysqli_fetch_array($result);
+                            $tgl = date('G:i, d-m-Y', strtotime($dataku['batas_pembayaran']));
+
+                            $batas = $dataku['batas_pembayaran'];
+                            date_default_timezone_set("Asia/Jakarta");
+                            $date = date("G:i, d-m-Y");
+                            $tomorrow = date('G:i, d-m-Y',strtotime($date . "+1 days"));
+
+                            if($dataku > 0 ) {
+                                echo $tgl;
+                            } else {
+                                echo $tomorrow;
+                            }
+
+
+                            ?></span></b></p>
+                            <hr>
+                          <b>Silahkan Pilih Pembayaran Dibawah ini :</b>
+                          <br>
+                          <p><img src="gambar/pgwy.png" alt="" style="width:250px;  margin-top:4px; margin-bottom:4px"> </p>
+                            
+                             <p> 
 
                             <?php 
                             $tb  = $i['total_bayar'];
                             $ong = $i['ongkir']; 
                             $thp = $tb - $ong;
                             $a = "<a href='notifypayment.php?thp=".$thp."&idp=".$id."&ong=".$ong."' target='_blank' class='btn btn-success btn-sm text-white' '>Bayar Sekarang</a>";
-                             
                             $b = " <a href='".$lk."' target='_blank' class='btn btn-success btn-sm text-white' '>Bayar Sekarang</a>";
                              
                         

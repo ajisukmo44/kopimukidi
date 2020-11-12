@@ -43,7 +43,7 @@ ob_end_clean();
 $mail->Subject = $subjek;
 $mail->Body = $content;
 $mail->AddEmbeddedImage('image/logo.png', 'logo_mynotescode', 'logo.png'); // Aktifkan jika ingin menampilkan gambar dalam email
-$mail->AddEmbeddedImage('image/logo2.png', 'logo_mynotescode2', 'logo2.png'); // Aktifkan jika ingin menampilkan gambar dalam email
+$mail->AddEmbeddedImage('image/pgwy.png', 'logo_mynotescode2', 'pgwy.png'); // Aktifkan jika ingin menampilkan gambar dalam email
 $mail->AddEmbeddedImage('image/payment.png', 'logo_mynotescode3', 'logo3.png'); // Aktifkan jika ingin menampilkan gambar dalam email
 
 if (empty($attachment)) { // Jika tanpa attachment

@@ -23,7 +23,6 @@
     $body['returnUrl']      = 'http://localhost/kopimukidi/paymentsuccess.php?idp='.$idp;
     $body['cancelUrl']      = 'http://localhost/kopimukidi/index.php';
     $body['notifyUrl']      = 'http://localhost/kopimukidi/index.php';
-    $body['paymentMethod']  = 'qris';
     $body['expired']        = '24';
     $body['referenceId']    = $idp;
     $body['buyerName']      = $nama;
@@ -76,11 +75,10 @@
 
             include 'koneksi.php';
 
-            mysqli_query($koneksi, "UPDATE tb_pemesanan SET link_pembayaran = '$url', status_pemesanan='2' WHERE id_pemesanan = '$idp'");
+            mysqli_query($koneksi, "UPDATE tb_pemesanan SET link_pembayaran = '$url' WHERE id_pemesanan = '$idp'");
 
-            mysqli_query($koneksi, "INSERT INTO tb_pembayaran values ('','$idp','payment gateway','-','QRIS','$tb','payment.jpg',now(),'1')");
+            mysqli_query($koneksi, "INSERT INTO tb_pembayaran values ('','$idp','$nama','Payment Gateway QRIS','$tb',now(),NOW()+INTERVAL 1 DAY,'1')");
 
-            mysqli_query($koneksi, "INSERT INTO tb_riwayat_status values('','$idp',2, now())");
 
             header('Location:' . $url);
         } else {

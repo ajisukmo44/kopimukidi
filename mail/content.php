@@ -94,9 +94,9 @@ while ($i = mysqli_fetch_array($invoice)) {
 		</div>
 		<hr>
 		<div style="margin-left:15px">
-			<b>PEMBAYARAN DI TUJUKAN KEPADA :</b>
+			<b>SILAHKAN MELAKUKAN PEMBAYARAN MELALUI PAYMENT GATEWAY:</b>
 			<p> <img src="cid:logo_mynotescode2" alt="Logo" style="width:130px;  margin-top:4px; margin-bottom:4px"> </p>
-			<p>1550276344 - an: mukidi </p>
+			
 		</div>
 		<hr>
 		<div style="margin-left:15px">

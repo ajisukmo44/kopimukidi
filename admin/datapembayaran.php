@@ -55,14 +55,7 @@ include 'fungsi/cek_session.php';      // session
                                     $jml = mysqli_num_rows($result);
                                     ?>
 
-                                    <?php if ($jml > 0) {
-                                        echo " <span class='alert alert-danger p-0' role='alert'>
-                                $jml Data Pembayaran Belum Di Validasi !
-                                </span>";
-                                    } else {
-                                        echo "";
-                                    }
-                                    ?>
+                            
                                 </h4>
                             </div>
                             <div class="card-body--">
@@ -73,11 +66,9 @@ include 'fungsi/cek_session.php';      // session
                                                 <th>No</th>
                                                 <th>ID&nbsp;Pemesanan</th>
                                                 <th>Metode&nbsp;Pembayaran</th>
-                                                <th>Nama&nbsp;Rekening</th>
-                                                <th>Bank</th>
-                                                <th>Jumlah&nbsp;Transfer</th>
-                                                <th>Tgl&nbsp;Transfer</th>
-                                                <th>Bukti&nbsp;Transfer</th>
+                                                <th>Total&nbsp;Pembayaran</th>
+                                                <th>Tgl&nbsp;Pembayaran</th>
+                                                <th>Batas&nbsp;Pembayaran</th>
                                                 <th>status&nbsp;Pembayaran</th>
                                                 <th>Tindakan</th>
                                             </tr>
@@ -89,32 +80,37 @@ include 'fungsi/cek_session.php';      // session
                                                 $query = mysqli_query($conn, "SELECT * FROM tb_pembayaran ORDER BY id_pemesanan");
                                                 while ($data = mysqli_fetch_assoc($query)) {
                                                     $status = $data['status_pembayaran'];
-                                                    $tgl = date('d-m-Y', strtotime($data['tanggal_transfer']));
+                                                    $tgl = date('d-m-Y', strtotime($data['tanggal_pembayaran']));
+                                                    $tgl1 = date('h:i, d-m-Y', strtotime($data['batas_pembayaran']));
                                                 ?>
                                                     <td><?= $no++ ?></td>
                                                     <td><?php echo $data['id_pemesanan']; ?></td>
                                                     <td><?php echo $data['metode_pembayaran']; ?></td>
-                                                    <td><?php echo $data['nama_rekening']; ?></td>
-                                                    <td><?php echo $data['nama_bank']; ?></td>
-                                                    <td><?php echo $data['jumlah_transfer']; ?></td>
-                                                    <td><?= $tgl; ?></td>
-                                                    <?php echo "<td><h6><a href='#myModal' class='btn btn-light btn-sm' id='bayar' data-toggle='modal' data-id=" . $data['id_pembayaran'] . "> <i class='fa fa-eye'></i> bukti transfer </a></h6></td>"; ?>
+                                                    <td><?php echo "Rp. " . number_format($data['total_pembayaran']); ?></td>
+                                                    <td><?= $tgl ; ?></td>
+                                                    <td><?= $tgl1 ;?></td>
+                                                
                         <td>
                             <?php $bayar = $data['status_pembayaran'];
                             if ($bayar == 2) {
-                                echo "<span class='badge badge-success'> <i class='fa fa-check'></i> Tervalidasi </span>";
+                                echo "<span class='badge badge-success'> <i class='fa fa-check'></i> Pembayaran Berhasil </span>";
                             } else {
-                                echo "<span class='badge badge-danger'><i class='fa fa-times'></i> Belum Di Validasi </span>";
+                                echo "<span class='badge badge-danger'><i class='fa fa-times'></i> Belum Dibayar </span>";
                             }
                             ?>
                             </>
                         <td>
+
                         <?php
                         $idt = $data['id_pemesanan'];
-                        $idb = $data['id_pembayaran'];
-                        $a1 = "<h5><a href='validasi/pembayaranupdate.php?id_pembayaran=$idb&id_pemesanan=$idt'  class='btn btn-success btn-sm'><i class='fa fa-check'></i></a></h5>";
+                        $sql1 = "SELECT * FROM tb_pemesanan WHERE id_pemesanan= '$idt' ";
+                        $query1 = mysqli_query($conn, $sql1);
+                        $data1 = mysqli_fetch_array($query1);
+                        $statuspesan = $data1['status_pemesanan'];
+                    
+                        $a1 = "<h5><a href='validasi/pembayaranupdate.php?id_pemesanan=$idt'  class='btn btn-info btn-sm'><i class='fa fa-cube'></i> Packing</a></h5>";
                         $a2 = "<h5><a href='#'  class='btn btn-secondary btn-sm'><i class='fa fa-check'></i></a></h5>";
-                        if ($status == 1) {
+                        if ($statuspesan == 2) {
                             echo $a1;
                         } else {
                             echo $a2;

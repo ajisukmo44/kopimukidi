@@ -13,9 +13,9 @@ include 'header2.php';
 <!-- /BREADCRUMB -->
 
 <div class="section" style="background-color: #D5B487;">
-    <div class="container mb-5">
+    <div class="container mb-5 ">
 
-        <div class="row bg-white mb-5 mt-5" style="border-radius: 1%;">
+        <div class="row bg-white mb-5 mt-5 " style="border-radius: 1%;">
             <?php
             include 'psidebar.php';
             ?>
@@ -40,11 +40,11 @@ include 'header2.php';
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID Pemesanan</th>
-                                <th>Detail</th>
-                                <th>Tgl Checkout</th>
-                                <th>No Resi</th>
-                                <th class="text-center">Status Pemesanan</th>
+                                <th>ID&nbsp;Pemesanan</th>
+                                <th>Detail&nbsp;Pemesanan</th>
+                                <th>Tgl&nbsp;Checkout</th>
+                                <th>No&nbsp;Resi</th>
+                                <th class="text-center">Status&nbsp;Pemesanan</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -58,7 +58,7 @@ include 'header2.php';
                             ?>
                                 <tr>
                                     <td> <?= $idp ?> </td>
-                                    <td> <a class='btn btn-sm btn-default btn-xs' href="invoicetransaksi.php?id=<?php echo $i['id_pemesanan']; ?>"><i class="fa fa-file"></i> detail</a> </td>
+                                    <td> <a class='btn btn-sm btn-default btn-xs' href="invoicetransaksi.php?id=<?php echo $i['id_pemesanan']; ?>"><i class="fa fa-file"></i> Lihat detail</a> </td>
                                     <td><?= $tanggal ?></td>
 
                                     <?php
@@ -90,9 +90,9 @@ include 'header2.php';
                                         } elseif ($i['status_pemesanan'] == 1) {
                                             echo "<a href='#myModal' data-toggle='modal' data-id='$idp'><span class='label label-danger'><i class='fa fa-money'></i> Menunggu pembayaran</span></a>";
                                         } elseif ($i['status_pemesanan'] == 2) {
-                                            echo "<a href='#myModal' data-toggle='modal' data-id='$idp' ><span class='label label-warning'><i class='fa fa-spinner'></i> Sedang Diproses</span></a>";
+                                            echo "<a href='#myModal' data-toggle='modal' data-id='$idp' ><span class='label label-success'><i class='fa fa-check-square-o'></i> Pembayaran Berhasil</span></a>";
                                         } elseif ($i['status_pemesanan'] == 3) {
-                                            echo "<a href='#myModal' data-toggle='modal' data-id='$idp' ><span class='label label-info'><i class='fa fa-cubes'></i> Sedang Dipacking</span></a>";
+                                            echo "<a href='#myModal' data-toggle='modal' data-id='$idp' ><span class='label label-info'><i class='fa fa-cube'></i> Sedang Dipacking</span></a>";
                                         } elseif ($i['status_pemesanan'] == 4) {
                                             echo "<a href='#myModal' data-toggle='modal' data-id='$idp'><span class='label label-primary'><i class='fa fa-truck'></i> Sudah Dikirim</span></a>";
                                         } elseif ($i['status_pemesanan'] == 5) {
@@ -103,10 +103,12 @@ include 'header2.php';
 
                                     <td class="text-center">
                                         <?php
-                                        $ido = $i['id_pemesanan'];
+                                        $idp = $i['id_pemesanan'];
                                         $tb = $i['total_bayar'];
+                                        $ong = $i['ongkir'];
+                                        $thp = $tb - $ong;
                                         $Status = $i['status_pemesanan'];
-                                        $a1 = "<a class='btn btn-sm btn-primary' href='konfirpembayaran.php?id=$ido&tb=$tb'><i class='fa fa-dollar'></i> Konfir Pembayaran</a>";
+                                        $a1 = "<a href='notifypayment.php?thp=".$thp."&idp=".$idp."&ong=".$ong."' target='_blank' class='label label-info' '><i class='fa fa-dollar'></i> Bayar Sekarang</a>";
 
                                         $a2 = "<a class='btn btn-sm btn-success' href='validasi/selesai_act.php?id=$ido'><i class='fa fa-check'></i> Selesai</a>";
 
